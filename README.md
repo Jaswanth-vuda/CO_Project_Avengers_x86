@@ -49,3 +49,9 @@ we done maximum work together
 CS19B022 Decoding and Data segment 
 CS19B042 execution, syntax ,and ,file reading.
 we written code  at same time with each other ideas .
+# what we have done 
+  every thing works as you said in the phase 1
+ # but two nested loops are not working 
+but two loops without nested are working
+Bubble sort is not working
+we tried for two nested loops but nested loop is not working, only single loops are working .
