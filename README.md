@@ -46,16 +46,16 @@ exit,
 
 
 for running  the file simulator.cpp:
-    1.use command g++ simulator.cpp
-    2.it will ask the file name to be opened to read the file
-    3.you have to write the file name followed by its extension example(a.asm,sample.s)
-    (".asm" and ".s" files are only allowed)
-    4.Before running the simulator.cpp,
-        you should create a file with extension .asm or .s and write your code in it and save it and then run the file with this file name.
+    1. Use command g++ simulator.cpp 
+    2. It will ask the file name to be opened to read the file
+    3. You have to write the file name followed by its extension example(a.asm,sample.s)
+                  (".asm" and ".s" files are only allowed)
+    4. Before running the simulator.cpp,
+            you should create a file with extension .asm or .s and write your code in it and save it and then run the file with this file name.
 
 # contribution 
-we done maximum work together 
+we done maximum work together(everything from first to last line of the code that we have written)
 CS19B022 Decoding and Data segment 
 CS19B042 execution, syntax ,and ,file reading.
-we written code  at same time with each other ideas .
+we written with each others ideas .
 
