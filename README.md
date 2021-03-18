@@ -1,17 +1,18 @@
 # CO_Project_Avengers_x86
 
-
+# About Instructions,Registers and Memory :
  Added instructuions are  ADD,SUB,ADDI,SUBI,BNE,jump,BEQ,LW,SW,MULI
  Every instruction should be written in capitals like ADD,SUB but jump instruction has to be written in small, example jump.
  
  After each instruction there should be a comma for termination of instruction, for .data and .text and .globl main and labels should not write commas and spaces
  
  For exitting the file  write command "exit" in new line with a comma example:      exit,
- 
-# Number of registers are 32; and we declared registers as int R[32]
+#
+Number of registers are 32; and we declared registers as int R[32]
  for accesing registers write Rn  where n value varies from 0 to 31
  example:  R1 refers to register 1->R[1];
-# memory we declared memory for 4kb as char mem[4096];
+ #
+Memory:we declared memory for 4kb as char mem[4096];
  we included only one directive ".word" for storing the integer values to memory or data segment
 
 
