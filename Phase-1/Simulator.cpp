@@ -12,16 +12,17 @@ int flag = 0;
 ifstream in1;
 ifstream in;
 
-class Instructions_Exec
+class Instruction_Exec
 {
 public:
     stack<string> sstr;
+    stack<int> sint;
     stack<string> labH;
     stack<string> dataLab;
     stack<int> dataNum;
     stack<string> dataStr;
-    stack<int> sint;
-
+    
+// converts hexadecimal to int/decimal
     int convert(char a[])
     {
         int len = strlen(a);
@@ -42,8 +43,7 @@ public:
         }
         return temp;
     }
-
-//checks if a number is multiple of 4
+// checks if a number is a multiple of 4
     bool isMult(int i)
     {
         if (i % 4 == 0)
@@ -51,8 +51,7 @@ public:
         else
             return false;
     }
-
-//checks if a word is string or not
+// check if a word is string or not
     bool isString(string str)
     {
         for (int i = 0; i < str.length(); i++)
@@ -60,11 +59,12 @@ public:
                 return true;
         return false;
     }
-// converts decimal to hexadecimal and stores in datasegment/memory
+// converts decimal to hexdecimal and stores in datasegment/memory
     void decToHexa(int n)
     {
         char hexaDeciNum[4];
         int i = 0;
+        // int size = dataNum.size();
         while (n != 0)
         {
             int temp = 0;
@@ -82,7 +82,7 @@ public:
 
             n = n / 16;
         }
-        // cout << i << endl;
+
         if (i == 1)
         {
             mem[index1] = hexaDeciNum[i - 1];
@@ -110,8 +110,7 @@ public:
             index1 = index1 - 4;
         }
     }
-
-// converts dec to hexadec and stores or re-write memory using initial index 
+// converts dec to hexadecimal and stores or re-write memory using initial index
     void decToHexSW(int n,int i1)
     {
         char hexaDeciNum[4];
@@ -164,7 +163,6 @@ public:
             mem[i1] = hexaDeciNum[i];
         }
     }
-
 // traverses the region between data and text segments and stores in memory
     void parse_data(string fileN, string l1, string l2)
     {
@@ -181,16 +179,19 @@ public:
                 getline(in2, line1);
             }
             getline(in2, line);
+            // cout << line << endl;
             if (line == l2)
                 in2.close();
             else
             {
+
                 int l = line.length();
                 char c1[l];
 
                 for (int i = 0; i < l; i++)
                 {
                     c1[i] = line[i];
+                    // cout << c1[i];
                 }
                 for (int x = 0; x < l - 1; x++)
                 {
@@ -203,12 +204,14 @@ public:
                         }
                         x++;
                     }
+
                     word = word + c1[x];
 
                     if (c1[x + 1] == ' ' || c1[x + 1] == ',')
                     {
                         if (word != "")
                         {
+                            // cout << word << endl;
                             int len = word.length();
                             if (word[len - 1] == ':')
                             {
@@ -239,6 +242,7 @@ public:
                 }
                 while (!dataNum.empty())
                 {
+
                     if (dataStr.top() == ".word")
                     {
                         if (flag == 0)
@@ -258,6 +262,7 @@ public:
 // handles all labels using stack
     void parse_label(string fileName, string lab)
     {
+
         string line1;
         string l11 = "";
         in1.open(fileName);
@@ -268,13 +273,16 @@ public:
                 getline(in1, l11);
             }
             getline(in1, line1);
+            // cout << line1;
             Inst(line1);
         }
+
         in1.close();
     }
 // handles all instructions in main of a file
     void Inst(string str)
     {
+
         string word = "";
         sstr.push("sample");
         int l = str.length();
@@ -303,7 +311,7 @@ public:
                 if (word != "")
                 {
 
-                    if (word == "ADD" || word == "SUB" || word == "ADDI" || word == "SUBI" || word == "LW" || word == "SW" || word == "BNE" || word == "BEQ" || word == "jump")
+                    if (word == "ADD" || word == "SUB" || word == "ADDI" || word == "SUBI" || word == "LW" || word == "SW" || word == "BNE" || word == "BEQ" || word == "jump"||word=="SGT"||word=="MULI")
                     {
 
                         sstr.push(word);
@@ -326,6 +334,15 @@ public:
                             {
                                 t += word[i];
                             }
+                            if(isString(t))
+                            {
+                            //    cout << "word in else: " << t << endl;
+                                int i = atoi(&t[1]);
+                                sint.push(R[i]);
+                                // cout << R[i] << endl;
+                                word= "";
+                            }
+                            else{
                             stringstream ss(word);
                             int i = 0;
                             ss >> i;
@@ -338,6 +355,7 @@ public:
                             }
                             labH.push(temp);
                             word = "";
+                            }
                         }
                         else
                         {
@@ -360,6 +378,8 @@ public:
                             }
                             else
                             {
+
+                                // cout << "word in else: " << word << endl;
                                 stringstream ss(word);
                                 int i = 0;
                                 ss >> i;
@@ -390,7 +410,9 @@ public:
             a = sint.top();
             sint.pop();
         }
-        //...............................................................................................
+        //.........................................................................................................
+        // if (sstr.size() == 2)
+        // {
 // executing each instruction
         if (sstr.top() == "ADD")
         {
@@ -417,7 +439,12 @@ public:
             sstr.pop();
             // cout << "top element after pop : " << sstr.top() << endl;
         }
-
+        else if(sstr.top() == "MULI")
+        {
+           R[a]=R[b]*c;
+           sstr.pop();
+            // cout << "top element after pop : " << sstr.top() << endl;
+        }
         else if (sstr.top() == "LW")
         {
             int temp_addr = b;
@@ -445,7 +472,7 @@ public:
         }
         else if (sstr.top() == "BNE")
         {
-            // cout << "Values of R2 and R3: " << R[2] << "   " << R[3] << endl;
+            cout << "Values of R2 and R3: " << R[2] << "   " << R[3] << endl;
             if (R[a] != R[b])
             {
                 in.close();
@@ -470,8 +497,17 @@ public:
             sstr.pop();
             // cout << "top element after pop : " << sstr.top() << endl;
         }
+        else if(sstr.top()=="SGT")
+        {
+          if(R[b]>=R[c])
+          {
+              R[c]=R[b];
+              R[a]=R[16];
+          }
+        }
         else if (sstr.top() == "jump")
         {
+           // in.close();
             in1.close();
             string s2 = labH.top();
             // cout << "after jump: " << s2 << endl;
@@ -482,13 +518,13 @@ public:
 
 class Parser
 {
-    Instructions_Exec obj;
+    Instruction_Exec obj;
 
 public:
 // reads the file line by line
     void parser(string s, int n)
     {
-        obj.parse_data(s, ".data", ".text");
+        obj.parse_data(fName, ".data", ".text");
         string line;
         string l1;
 
@@ -511,13 +547,14 @@ public:
                         obj.Inst(line);
                 }
                 print();
+                // in.close();
             }
             else
                 cout << "Not an assembly language !!" << endl;
         }
         else if (n >= 3)
         {
-            if (s[n - 2] == '.' && s[n - 1] == 's')
+            if ((s[n - 2] == '.' && s[n - 1] == 'a') || (s[n - 2] == '.' && s[n - 1] == 's'))
             {
                 in.open(s);
 
@@ -530,14 +567,17 @@ public:
                     getline(in, line);
                     if (line == "exit,")
                     {
+         
                         in.close();
                     }
+                  
                     else
                     {
                         obj.Inst(line);
                     }
                 }
                 print();
+              
             }
             else
                 cout << "Not an assembly language !!" << endl;
@@ -556,11 +596,11 @@ public:
             else
                 cout << "R" << (i) << "   = " << R[i] << endl;
         }
-
-        // Memory
+        // // Memory
+        cout<<"Data Segment : "<<endl;
         for (int j = 0; j < 4096; j = j + 4)
         {
-            cout << "mem[ " << j << " ]  =  0X" << mem[j] << mem[j + 1] << mem[j + 2] << mem[j + 3] << "    ";
+            cout << "mem[ " << j << " ]  =  0x" << mem[j] << mem[j + 1] << mem[j + 2] << mem[j + 3] << "\t\t ";
         }
     }
 };
@@ -571,11 +611,11 @@ int main()
     {
         mem[i] = '0';
     }
-    string s1, s2;
     Parser p;
     cout << "Enter the file name to be opened : ";
     cin >> fName;
     int n = fName.length();
+
     p.parser(fName, n);
 
     return 0;
