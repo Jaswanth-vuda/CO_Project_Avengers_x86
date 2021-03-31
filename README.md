@@ -1,5 +1,5 @@
 # CO_Project_Avengers_x86
-
+#Phase 1
 # About Instructions,Registers and Memory :
  Added instructuions are  ADD,SUB,ADDI,SUBI,BNE,jump,BEQ,LW,SW,MULI
  Every instruction should be written in capitals like ADD,SUB but jump instruction has to be written in small, example jump.
@@ -59,4 +59,14 @@ we done maximum work together(everything from first to last line of the code tha
 CS19B022 Decoding and Data segment 
 CS19B042 execution, syntax ,and ,file reading.
 we written with each others ideas .
+
+
+#phase 2
+pipeline:
+we divided pipeline in to five stages IF,ID,EXE,MEM,WB
+After ID stage we are able to know type of instruction
+According to type of instruction we used data  dependency  and corresponded no of clock cycles are added between ID and EXE stage.
+Just manipulated the clock.
+we implemented both using with and without data forwarding.
+we printed total  no of clock cycles ,stalls
 
