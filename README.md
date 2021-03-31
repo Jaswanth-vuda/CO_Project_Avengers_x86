@@ -1,5 +1,5 @@
 # CO_Project_Avengers_x86
-#Phase 1
+# Phase 1
 # About Instructions,Registers and Memory :
  Added instructuions are  ADD,SUB,ADDI,SUBI,BNE,jump,BEQ,LW,SW,MULI
  Every instruction should be written in capitals like ADD,SUB but jump instruction has to be written in small, example jump.
