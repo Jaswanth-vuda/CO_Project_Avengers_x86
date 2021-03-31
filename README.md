@@ -61,7 +61,7 @@ CS19B042 execution, syntax ,and ,file reading.
 we written with each others ideas .
 
 
-#phase 2
+# phase 2
 pipeline:
 we divided pipeline in to five stages IF,ID,EXE,MEM,WB
 After ID stage we are able to know type of instruction
