@@ -625,7 +625,7 @@ void print()
 	}
 	// // Memory
 
-	for (int j = 0; j < 4096; j++)
+	for (int j = 0; j < 100; j++)
 	{
 		cout << "mem[ " << j << " ]  =" << mem[j] << "\t\t ";
 	}
