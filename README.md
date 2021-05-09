@@ -69,4 +69,12 @@ According to type of instruction we used data  dependency  and corresponded no o
 Just manipulated the clock.
 we implemented both using with and without data forwarding.
 we printed total  no of clock cycles ,stalls
+# phase 3
+cache:
+we added cache for  load and store word instructioins
+we implemented two level cache with LRU policy.
+In the file cache.cpp you have to input cache size , block size, access latencies for each caches and mem access time. Everything has to be input in this file only.
+At last we printed contents in registers and miss rate, Instructions per cycle.
+contribution:
+we have done every thing in zoom meeting combinedly.
 
