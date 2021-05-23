@@ -1,10 +1,10 @@
 # CO_Project_Avengers_x86
 # Phase 1
 # About Instructions,Registers and Memory :
- Added instructuions are  ADD,SUB,ADDI,SUBI,BNE,jump,BEQ,LW,SW,MULI
+ Added instructuions are  ADD,SUB,ADDI,SUBI,BNE,jump,BEQ,LW,SW,MULI,SGT
  Every instruction should be written in capitals like ADD,SUB but jump instruction has to be written in small, example jump.
  
- After each instruction there should be a comma for termination of instruction, for .data and .text and .globl main and labels should not write commas and spaces
+ After each instruction there should be a comma for termination of instruction, for .data and .text and .global main and labels should not write commas and spaces
  
  For exitting the file  write command "exit" in new line with a comma example:      exit,
 #
